@@ -1,0 +1,58 @@
+<body style="background-image:url('https://images.assetsdelivery.com/compings_v2/phatthanit/phatthanit1509/phatthanit150900028.jpg');background-size: cover">
+    <div *ngIf="!dataClima">
+    <p class="text-center mt-5">CARGANDO..</p>
+</div>
+
+<div class="container-fluid" *ngIf="dataClima" >
+    <div class="row mb-3 mt-2">
+        <div class="col">
+        <h1 class="text-center mr-5" style="color:white;letter-spacing: 5px; font-size: 4em;">CLIMA</h1>
+        <h2 *ngIf="infoIp.city" class="text-center mr-5" style="color:white;letter-spacing: 5px;">{{infoIp.city}}, {{infoIp.region_name}}</h2>
+        </div>
+     </div>
+    <div class="row col-12"> 
+    <div *ngFor="let item of dataClima.dataseries; index as i; first as isFirst" class="row col-12">
+    <div class="col-12 d-flex justify-content-center mb-5" *ngIf="isFirst"> 
+            <div class="card col-lg-6 col-12 mr-lg-3 border-info">
+                <div class="card-header text-center  border-success " style="background-color:aliceblue;">
+                <h2>{{obtenerFecha(i)  | date:'fullDate'}}</h2>
+                </div>
+                <div class="card-body text-center">
+                    <img src="{{getImageClima(i)}}" class="float-left ml-lg-5" style="height: 10em;">
+                    <h3 class="card-text mt-4 mr-lg-5" >Maxima {{dataClima.dataseries[i].temp2m.max}}° <fa-icon [icon]="termometroLleno" style="color:orange"></fa-icon> </h3>
+                    <h3 class="card-text mt-4 mr-lg-5" >Minima {{dataClima.dataseries[i].temp2m.min}}° <fa-icon [icon]="termometroVacio" style="color:blue"></fa-icon></h3>
+                </div>
+            </div>
+    </div>
+    <div  class="col-12 col-lg-6 d-flex justify-content-center mb-2" *ngIf="!isFirst && i%2==1" >  
+        <div class="col-12 col-lg-12  d-flex justify-content-center mb-5" >
+            <div class="card col-12 border-info">
+                <div class="card-header text-center border-success" style="background-color:aliceblue;">
+                <h2>{{obtenerFecha(i)  | date:'fullDate'}}</h2>
+                </div>
+                <div class="card-body text-center">
+                    <img src="{{getImageClima(i)}}" class="float-left ml-lg-4" style="height: 10em;">
+                    <h3 class="card-text mt-4  mr-lg-5" >Maxima {{dataClima.dataseries[i].temp2m.max}}° <fa-icon [icon]="termometroLleno" style="color:orange"></fa-icon> </h3>
+                    <h3 class="card-text mt-4  mr-lg-5" >Minima {{dataClima.dataseries[i].temp2m.min}}° <fa-icon [icon]="termometroVacio" style="color:blue"></fa-icon></h3>
+                </div>
+            </div>
+        </div>
+</div>
+<div  class="col-12 col-lg-6 d-flex justify-content-center mb-2" *ngIf="!isFirst && i%2==1">  
+    <div class="col-12 col-lg-12  d-flex justify-content-center mb-5" >
+        <div class="card col-12 border-info">
+            <div class="card-header text-center border-success" style="background-color:aliceblue;">
+            <h2>{{obtenerFecha(i+1)  | date:'fullDate'}}</h2>
+            </div>
+            <div class="card-body text-center">     
+                <img src="{{getImageClima(i+1)}}" class="float-left ml-lg-4" style="height: 10em;">
+                <h3 class="card-text mt-4  mr-lg-5" >Maxima {{dataClima.dataseries[i+1].temp2m.max}}° <fa-icon [icon]="termometroLleno" style="color:orange"></fa-icon> </h3>
+                <h3 class="card-text mt-4  mr-lg-5" >Minima {{dataClima.dataseries[i+1].temp2m.min}}° <fa-icon [icon]="termometroVacio" style="color:blue"></fa-icon></h3>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+</div>
+</body>
